@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origen Cardos | Prototipo de Innovación Territorial - Colombia, Huila</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        cafe: {
+                            50: '#fdf8f5',
+                            100: '#f7ece4',
+                            200: '#eed5c4',
+                            500: '#9c5a3c',
+                            700: '#633520',
+                            800: '#4a2616',
+                            900: '#2d160c',
+                        },
+                        montana: {
+                            50: '#f2fbf5',
+                            100: '#e0f5e8',
+                            600: '#1f7a4c',
+                            700: '#185e3a',
+                            800: '#114229',
+                        },
+                        cacao: {
+                            400: '#eab308',
+                            500: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .qr-pattern {
+            background-image: radial-gradient(#2d160c 2px, transparent 2px), radial-gradient(#2d160c 2px, #fdf8f5 2px);
+            background-size: 16px 16px;
+            background-position: 0 0, 8px 8px;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(31, 122, 76, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(31, 122, 76, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(31, 122, 76, 0); }
+        }
+        .pulse-btn {
+            animation: pulse-ring 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-cafe-50 text-cafe-900 font-sans antialiased selection:bg-montana-600 selection:text-white">
+
+    <!-- BARRA SUPERIOR INSTITUCIONAL ESAP -->
+    <div class="bg-cafe-900 text-cafe-100 text-xs py-2 px-4 border-b border-cafe-700">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="bg-cacao-500 text-white font-bold px-2 py-0.5 rounded text-[11px]">ESAP</span>
+                <span class="font-medium">Administración Pública Territorial | Gestión para el Desarrollo – Equipo 3</span>
+            </div>
+            <div class="flex items-center gap-3 text-cafe-200">
+                <span><i class="fa-solid fa-location-dot text-cacao-400 mr-1"></i>Municipio de Colombia, Huila ("Ciudad de los Cardos")</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-cafe-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-cafe-700 to-montana-700 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-mug-hot text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl font-extrabold tracking-tight text-cafe-900 block leading-none">ORIGEN CARDOS</span>
+                    <span class="text-[11px] font-semibold uppercase tracking-widest text-montana-600">Laboratorio Joven de Café y Cacao</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-cafe-800">
+                <a href="#simulador" class="hover:text-montana-600 transition"><i class="fa-solid fa-qrcode mr-1 text-montana-600"></i>Simulador QR y Precios</a>
+                <a href="#recorrido" class="hover:text-montana-600 transition"><i class="fa-solid fa-route mr-1 text-cacao-500"></i>Cómo Funciona (4 Estaciones)</a>
+                <a href="#rubrica" class="hover:text-montana-600 transition"><i class="fa-solid fa-clipboard-check mr-1 text-cafe-500"></i>Los 7 Puntos de la Guía</a>
+                <a href="#indicador" class="hover:text-montana-600 transition"><i class="fa-solid fa-chart-line mr-1 text-montana-600"></i>Indicador +25%</a>
+            </nav>
+
+            <button onclick="scrollToSection('simulador')" class="bg-montana-600 hover:bg-montana-700 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow transition flex items-center gap-2">
+                <i class="fa-solid fa-mobile-screen-button"></i> Probar Prototipo QR
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION + EQUIPO ASESOR DE LA ALCALDÍA -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-cafe-900 via-cafe-800 to-cafe-900 text-white py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-semibold text-cacao-400">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+                        Reto “¡Alcaldía en Acción!” – Prototipo Funcional Interactivo
+                    </div>
+                    <h1 class="font-serif text-3xl sm:text-5xl font-extrabold leading-tight">
+                        Conectamos la sabiduría del campesino con el <span class="text-cacao-400">talento digital joven</span> en Colombia, Huila.
+                    </h1>
+                    <p class="text-cafe-100 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Cada joven capacitado por el <strong>SENA y el Comité de Cafeteros</strong> apadrina <strong>4 fincas campesinas</strong> para evaluar calidad en taza, tostar microlotes bajo una marca colectiva con registro sanitario municipal y venderlos con trazabilidad QR en Neiva y Bogotá sin intermediarios.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <button onclick="scrollToSection('simulador')" class="pulse-btn bg-montana-600 hover:bg-montana-700 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg transition flex items-center gap-2">
+                            <i class="fa-solid fa-qrcode text-lg"></i> Escanear Empaque QR en Vivo
+                        </button>
+                        <button onclick="scrollToSection('rubrica')" class="bg-white/10 hover:bg-white/20 border border-white/25 text-white font-semibold px-5 py-3.5 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-list-check"></i> Ver los 7 Puntos de Socialización
+                        </button>
+                    </div>
+
+                    <!-- TARJETAS DEL EQUIPO DE 4 INTEGRANTES -->
+                    <div class="pt-6 border-t border-white/15">
+                        <p class="text-xs uppercase tracking-wider text-cafe-200 font-bold mb-3">
+                            <i class="fa-solid fa-users-gear mr-1 text-cacao-400"></i> Equipo Asesor de la Alcaldía Municipal (4 Integrantes):
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                            <div class="bg-white/10 backdrop-blur p-2.5 rounded-xl border border-white/10">
+                                <span class="text-xs font-bold text-cacao-400 block">LILIANA</span>
+                                <span class="text-[11px] text-cafe-100 leading-tight block">Coordinación y Participación</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur p-2.5 rounded-xl border border-white/10">
+                                <span class="text-xs font-bold text-cacao-400 block">YIMI</span>
+                                <span class="text-[11px] text-cafe-100 leading-tight block">Analista Territorial</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur p-2.5 rounded-xl border border-white/10">
+                                <span class="text-xs font-bold text-cacao-400 block">CARLOS</span>
+                                <span class="text-[11px] text-cafe-100 leading-tight block">Diseñador de Solución</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur p-2.5 rounded-xl border border-white/10">
+                                <span class="text-xs font-bold text-cacao-400 block">OSCAR</span>
+                                <span class="text-[11px] text-cafe-100 leading-tight block">Gestor de Recursos e Indicador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISTA PREVIA DE LA BOLSA INTELIGENTE EN EL HERO -->
+                <div class="lg:col-span-5">
+                    <div class="bg-gradient-to-b from-amber-100 to-amber-200 text-cafe-900 p-6 rounded-3xl shadow-2xl border-4 border-amber-300/80 relative mx-auto max-w-md">
+                        <div class="absolute -top-3 right-5 bg-montana-600 text-white text-[11px] font-extrabold uppercase px-3 py-1 rounded-full shadow">
+                            Prototipo de Empaque Real
+                        </div>
+                        <div class="border-2 border-dashed border-cafe-700/40 rounded-2xl p-5 bg-cafe-50/90 space-y-4">
+                            <div class="flex justify-between items-start border-b border-cafe-200 pb-3">
+                                <div>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-montana-700 block">Marca Colectiva Municipal</span>
+                                    <h3 class="font-serif text-2xl font-black text-cafe-900">ORIGEN CARDOS</h3>
+                                    <p class="text-xs font-semibold text-cafe-700">Colombia, Huila • 1.750 m.s.n.m.</p>
+                                </div>
+                                <span class="bg-cafe-900 text-cacao-400 font-black text-sm px-2.5 py-1 rounded-lg">85.5 PTS SCA</span>
+                            </div>
+
+                            <!-- DATOS DE TRAZABILIDAD -->
+                            <div class="grid grid-cols-2 gap-2 text-xs bg-white p-3 rounded-xl border border-cafe-200">
+                                <div>
+                                    <span class="text-[10px] text-gray-500 block">Productor Cafetero:</span>
+                                    <strong class="text-cafe-900">Don Álvaro Rojas</strong>
+                                    <span class="text-[11px] text-montana-700 block">Vereda San Marcos</span>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] text-gray-500 block">Joven Catador / Gestor:</span>
+                                    <strong class="text-cafe-900">Carlos (Célula #01)</strong>
+                                    <span class="text-[11px] text-cacao-500 font-semibold block">Certificado SENA</span>
+                                </div>
+                            </div>
+
+                            <!-- QR INTERACTIVO VISUAL -->
+                            <div class="flex items-center gap-4 bg-amber-50/90 p-3 rounded-xl border border-amber-300">
+                                <div onclick="scrollToSection('simulador')" class="cursor-pointer w-20 h-20 bg-white p-1.5 rounded-xl border-2 border-cafe-900 flex-shrink-0 flex flex-col items-center justify-center shadow hover:scale-105 transition">
+                                    <i class="fa-solid fa-qrcode text-4xl text-cafe-900"></i>
+                                    <span class="text-[9px] font-extrabold text-montana-700 uppercase mt-0.5">Escanear</span>
+                                </div>
+                                <div class="text-xs space-y-1">
+                                    <p class="font-bold text-cafe-900">Etiqueta de Trazabilidad QR</p>
+                                    <p class="text-gray-600 text-[11px] leading-snug">Al escanear este código, el comprador ve la finca, el perfil de taza y pide por WhatsApp sin intermediarios.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-between items-center text-[11px] font-bold text-cafe-800 pt-1">
+                                <span><i class="fa-solid fa-shield-heart text-montana-600 mr-1"></i>INVIMA Colectivo Alcaldía</span>
+                                <span>Peso Neto: 500g (1 Libra)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 1: SIMULADOR INTERACTIVO DE ESCANEO QR Y CALCULADORA DE JUSTICIA COMERCIAL -->
+    <section id="simulador" class="py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="bg-montana-100 text-montana-800 text-xs font-extrabold uppercase px-3 py-1 rounded-full">Demostración en Vivo del Prototipo</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-cafe-900 mt-2">Simulador de Escaneo QR y Venta Directa</h2>
+            <p class="text-gray-600 mt-2 text-sm sm:text-base">
+                Selecciona uno de los microlotes de las veredas de <strong>Colombia, Huila</strong> para ver cómo el código QR conecta al productor rural y al joven gestor directamente con el comprador en Neiva o Bogotá.
+            </p>
+        </div>
+
+        <!-- BOTONES SELECTORES DE MICROLOTES -->
+        <div class="grid sm:grid-cols-3 gap-4 mb-8">
+            <button onclick="selectLot(0)" id="lot-btn-0" class="lot-btn text-left p-4 rounded-2xl border-2 border-montana-600 bg-white shadow-md transition flex items-start justify-between">
+                <div>
+                    <span class="text-[11px] font-bold uppercase text-montana-700 bg-montana-50 px-2 py-0.5 rounded">Microlote #01 • Café Especial</span>
+                    <h3 class="font-bold text-base text-cafe-900 mt-1">Vereda San Marcos</h3>
+                    <p class="text-xs text-gray-600">Productor: Don Álvaro Rojas | 85.5 Pts SCA</p>
+                </div>
+                <i class="fa-solid fa-circle-check text-montana-600 text-xl"></i>
+            </button>
+
+            <button onclick="selectLot(1)" id="lot-btn-1" class="lot-btn text-left p-4 rounded-2xl border-2 border-cafe-200 bg-white/70 hover:bg-white transition flex items-start justify-between">
+                <div>
+                    <span class="text-[11px] font-bold uppercase text-cafe-700 bg-cafe-100 px-2 py-0.5 rounded">Microlote #02 • Café Bourbon Rosado</span>
+                    <h3 class="font-bold text-base text-cafe-900 mt-1">Vereda Santa Ana</h3>
+                    <p class="text-xs text-gray-600">Productora: Doña Miriam Ortiz | 86.0 Pts SCA</p>
+                </div>
+                <i class="fa-regular fa-circle text-gray-400 text-xl"></i>
+            </button>
+
+            <button onclick="selectLot(2)" id="lot-btn-2" class="lot-btn text-left p-4 rounded-2xl border-2 border-cafe-200 bg-white/70 hover:bg-white transition flex items-start justify-between">
+                <div>
+                    <span class="text-[11px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded">Microlote #03 • Cacao Fino de Aroma</span>
+                    <h3 class="font-bold text-base text-cafe-900 mt-1">Vereda Monguí</h3>
+                    <p class="text-xs text-gray-600">Productor: Don Hernando Tovar | 86.5 Pts</p>
+                </div>
+                <i class="fa-regular fa-circle text-gray-400 text-xl"></i>
+            </button>
+        </div>
+
+        <!-- PANEL SIMULADOR DIVIDIDO: CELULAR ESCANEADO + CALCULADORA DE IMPACTO -->
+        <div class="grid lg:grid-cols-12 gap-8 items-start bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-cafe-200">
+            
+            <!-- COLUMNA IZQUIERDA: PANTALLA DEL CELULAR AL ESCANEAR EL QR -->
+            <div class="lg:col-span-5 bg-cafe-900 text-white rounded-3xl p-5 border-4 border-cafe-700 shadow-lg">
+                <div class="flex items-center justify-between text-xs text-cafe-200 border-b border-white/10 pb-3 mb-4">
+                    <span><i class="fa-solid fa-wifi mr-1 text-green-400"></i> Vista en el Celular del Comprador</span>
+                    <span class="bg-green-500/20 text-green-300 px-2 py-0.5 rounded-full text-[11px] font-bold">QR Verificado</span>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white/10 p-4 rounded-2xl border border-white/15">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span id="sim-badge" class="text-[11px] font-bold uppercase tracking-wider text-cacao-400">Café de Altura • Vereda San Marcos</span>
+                                <h3 id="sim-title" class="font-serif text-xl font-bold mt-0.5">Finca El Mirador – Lote #01</h3>
+                            </div>
+                            <span id="sim-score" class="bg-cacao-500 text-white text-xs font-black px-2.5 py-1 rounded-lg">85.5 Pts</span>
+                        </div>
+
+                        <div class="mt-3 pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <span class="text-cafe-200 block text-[11px]">Familia Productora:</span>
+                                <strong id="sim-producer" class="text-white">Don Álvaro Rojas</strong>
+                            </div>
+                            <div>
+                                <span class="text-cafe-200 block text-[11px]">Joven Gestor / Catador:</span>
+                                <strong id="sim-youth" class="text-cacao-400">Carlos (Apadrina 4 fincas)</strong>
+                            </div>
+                            <div>
+                                <span class="text-cafe-200 block text-[11px]">Altitud y Proceso:</span>
+                                <strong id="sim-altitude" class="text-white">1.780 msnm / Lavado</strong>
+                            </div>
+                            <div>
+                                <span class="text-cafe-200 block text-[11px]">Notas Sensoriales:</span>
+                                <strong id="sim-notes" class="text-white">Panela, mandarina y cacao</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HISTORIA REAL DEL PRODUCTOR -->
+                    <div class="bg-cafe-800/90 p-3.5 rounded-xl text-xs text-cafe-100 leading-relaxed border border-white/10">
+                        <i class="fa-solid fa-quote-left text-cacao-400 mr-1"></i>
+                        <span id="sim-story">Cultivado bajo sombrío en las montañas de Colombia, Huila. Antes este grano se vendía sin diferenciar al intermediario; hoy es tostado en microlote por jóvenes de nuestra propia vereda.</span>
+                    </div>
+
+                    <!-- CONTROL DE CANTIDAD DE LIBRAS -->
+                    <div class="bg-white text-cafe-900 p-4 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="qty-slider" class="text-xs font-extrabold uppercase text-cafe-800">Cantidad a pedir (Libras de 500g):</label>
+                            <span id="qty-display" class="text-lg font-black text-montana-700 bg-montana-50 px-3 py-0.5 rounded-lg border border-montana-600/30">5 Libras</span>
+                        </div>
+                        <input id="qty-slider" type="range" min="1" max="50" value="5" oninput="updateCalculator()" class="w-full accent-montana-600 cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-gray-500 font-semibold mt-1">
+                            <span>1 lb (Hogar)</span>
+                            <span>15 lbs (Oficina / Evento)</span>
+                            <span>50 lbs (Tienda Neiva/Bogotá)</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openWhatsAppModal()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 px-4 rounded-2xl shadow-lg transition flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Hacer Pedido Directo al Joven Gestor
+                    </button>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: DESGLOSE AUTOMÁTICO DE INGRESOS Y ANTICIPO (FASE 6) -->
+            <div class="lg:col-span-7 space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cafe-200 pb-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase text-montana-700">Transparencia y Justicia Comercial</span>
+                        <h3 class="text-xl font-extrabold text-cafe-900">Liquidación en Tiempo Real del Pedido</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-gray-500 block">Valor Total del Pedido Directo:</span>
+                        <span id="calc-total" class="text-2xl font-black text-montana-700">$140.000 COP</span>
+                    </div>
+                </div>
+
+                <!-- COMPARATIVO CON EL INTERMEDIARIO TRADICIONAL -->
+                <div class="bg-montana-50 border-2 border-montana-600/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-montana-600 text-white text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full">Impacto en el Indicador de la Guía</span>
+                        <h4 class="font-bold text-cafe-900 text-sm sm:text-base">¿Cuánto gana el campesino frente al intermediario?</h4>
+                        <p class="text-xs text-gray-600">
+                            Vendido en bruto al intermediario local recibiría solo <strong id="calc-intermediary" class="line-through text-red-700">$78.000 COP</strong>. Con <em>Origen Cardos</em> recibe <strong id="calc-farmer-highlight" class="text-montana-700">$112.000 COP</strong>.
+                        </p>
+                    </div>
+                    <div class="bg-white px-4 py-3 rounded-xl border border-montana-600/30 text-center flex-shrink-0">
+                        <span class="text-[10px] font-bold uppercase text-gray-500 block">Aumento Neto logrado</span>
+                        <span id="calc-increase-pct" class="text-2xl font-black text-montana-700">+43.5%</span>
+                        <span class="text-[10px] text-montana-600 font-bold block">(Supera la meta del +25%)</span>
+                    </div>
+                </div>
+
+                <!-- LAS 3 BOLSAS DE DISTRIBUCIÓN -->
+                <div class="grid sm:grid-cols-3 gap-3.5">
+                    <div class="p-4 rounded-2xl bg-cafe-50 border border-cafe-200">
+                        <div class="flex justify-between items-center text-xs font-bold text-cafe-700 mb-1">
+                            <span>1. Al Productor Rural</span>
+                            <span class="bg-cafe-200 text-cafe-900 px-2 py-0.5 rounded">80%</span>
+                        </div>
+                        <p id="calc-farmer" class="text-xl font-black text-cafe-900">$112.000 COP</p>
+                        <p class="text-[11px] text-gray-600 mt-1">Pago directo a la familia campesina por su grano de alta calidad.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200">
+                        <div class="flex justify-between items-center text-xs font-bold text-amber-900 mb-1">
+                            <span>2. Al Joven Gestor</span>
+                            <span class="bg-amber-200 text-amber-900 px-2 py-0.5 rounded">15%</span>
+                        </div>
+                        <p id="calc-youth" class="text-xl font-black text-amber-900">$21.000 COP</p>
+                        <p class="text-[11px] text-gray-600 mt-1">Comisión por catación, control de tueste y venta digital en red.</p>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200">
+                        <div class="flex justify-between items-center text-xs font-bold text-blue-900 mb-1">
+                            <span>3. Fondo Cooperativo</span>
+                            <span class="bg-blue-200 text-blue-900 px-2 py-0.5 rounded">5%</span>
+                        </div>
+                        <p id="calc-fund" class="text-xl font-black text-blue-900">$7.000 COP</p>
+                        <p class="text-[11px] text-gray-600 mt-1">Sostenibilidad autónoma para reponer bolsas con válvula y etiquetas QR.</p>
+                    </div>
+                </div>
+
+                <!-- SOLUCIÓN DE LIQUIDEZ INCORPORADA EN LA FASE 6 -->
+                <div class="bg-amber-100/70 border border-amber-300 rounded-2xl p-4 text-xs space-y-2">
+                    <div class="flex items-center gap-2 font-extrabold text-cafe-900">
+                        <i class="fa-solid fa-bolt text-cacao-500 text-sm"></i>
+                        <span>Mejora Incorporada (Fase 6 del Laboratorio): Anticipo Inmediato del 75%</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Para que el campesino no tenga que esperar hasta que el café se venda en Neiva o Bogotá, el <strong>Fondo Rotatorio</strong> le entrega en efectivo el mismo sábado que baja su cosecha <strong id="calc-advance" class="text-cafe-900 underline">$84.000 COP (75%)</strong>, y al concretarse la venta digital recibe el <strong>25% restante (<span id="calc-balance">$28.000 COP</span>)</strong> con la prima de calidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: RECORRIDO DEL USUARIO EN 4 ESTACIONES -->
+    <section id="recorrido" class="py-12 bg-cafe-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-cacao-400 text-xs font-extrabold uppercase tracking-widest">Arquitectura Funcional del Prototipo</span>
+                <h2 class="font-serif text-3xl font-extrabold mt-1">Recorrido del Servicio: ¿Cómo opera la Red en Colombia, Huila?</h2>
+                <p class="text-cafe-200 text-sm mt-2">Haz clic en cada estación para explorar el paso a paso operativo que conecta la vereda con el mercado.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-5">
+                <!-- ESTACIÓN 1 -->
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/15 hover:border-cacao-400 transition">
+                    <div class="w-10 h-10 rounded-xl bg-cacao-500 text-white font-black flex items-center justify-center mb-3">1</div>
+                    <h3 class="font-bold text-lg text-cacao-400">Estación 1: Finca Veredal (Célula 1+4)</h3>
+                    <p class="text-xs text-cafe-100 mt-2 leading-relaxed">
+                        <strong>1 joven local apadrina 4 fincas</strong> de pequeños productores en veredas como San Marcos, Santa Ana o Monguí. Acompaña la recolección de grano maduro, fermentación controlada y secado solar.
+                    </p>
+                </div>
+
+                <!-- ESTACIÓN 2 -->
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/15 hover:border-cacao-400 transition">
+                    <div class="w-10 h-10 rounded-xl bg-montana-600 text-white font-black flex items-center justify-center mb-3">2</div>
+                    <h3 class="font-bold text-lg text-cacao-400">Estación 2: Laboratorio Joven y Tueste</h3>
+                    <p class="text-xs text-cafe-100 mt-2 leading-relaxed">
+                        Con entrenamiento del <strong>SENA y Comité de Cafeteros</strong>, el joven evalúa humedad y taza (&gt;84 pts). Se maquila el tueste bajo la marca colectiva <em>"Origen Cardos"</em> con registro INVIMA gestionado por la Alcaldía.
+                    </p>
+                </div>
+
+                <!-- ESTACIÓN 3 -->
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/15 hover:border-cacao-400 transition">
+                    <div class="w-10 h-10 rounded-xl bg-cacao-500 text-white font-black flex items-center justify-center mb-3">3</div>
+                    <h3 class="font-bold text-lg text-cacao-400">Estación 3: Empaque con Código QR</h3>
+                    <p class="text-xs text-cafe-100 mt-2 leading-relaxed">
+                        Cada bolsa lleva impreso el código QR de trazabilidad. El comprador en eventos municipales, oficinas públicas o tiendas de Neiva y Bogotá escanea el empaque y pide por WhatsApp sin intermediarios.
+                    </p>
+                </div>
+
+                <!-- ESTACIÓN 4 -->
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/15 hover:border-cacao-400 transition">
+                    <div class="w-10 h-10 rounded-xl bg-montana-600 text-white font-black flex items-center justify-center mb-3">4</div>
+                    <h3 class="font-bold text-lg text-cacao-400">Estación 4: Pago Justo y Cooperativa</h3>
+                    <p class="text-xs text-cafe-100 mt-2 leading-relaxed">
+                        El campesino recibe <strong>75% de anticipo contra entrega</strong> y el saldo al venderse el lote (80% productor, 15% joven gestor, 5% fondo cooperativo para sostener la iniciativa sin depender del alcalde de turno).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: LOS 7 PUNTOS OBLIGATORIOS DE LA GUÍA PARA LA SOCIALIZACIÓN -->
+    <section id="rubrica" class="py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <span class="bg-cafe-200 text-cafe-900 text-xs font-extrabold uppercase px-3 py-1 rounded-full">Sustentación Académica ESAP (15 Minutos)</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-cafe-900 mt-2">Tablero de Control: Los 7 Puntos de Evaluación</h2>
+            <p class="text-gray-600 text-sm mt-2">Toda la información técnica de la Ficha de Diseño organizada para exponer ante el docente y el Comité Público de Innovación.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- PUNTO 1 -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-cafe-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-extrabold uppercase text-white bg-cafe-800 px-3 py-1 rounded-full">Punto 1 • Analista (Yimi)</span>
+                        <i class="fa-solid fa-magnifying-glass-Location text-xl text-cafe-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-cafe-900">Problema Territorial y Población Afectada</h3>
+                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                        En las veredas cafeteras y cacaoteras de <strong>Colombia, Huila</strong>, más del 85% del grano se vende en bruto a intermediarios que no pagan diferenciales por calidad de altura. Simultáneamente, los jóvenes (18-28 años) migran hacia Neiva o Bogotá por falta de oportunidades conectadas con el campo.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-cafe-100 text-xs">
+                    <strong class="text-montana-700 block">Beneficiarios Directos (Piloto):</strong>
+                    <span>10 pequeños productores rurales y 5 jóvenes locales (escalable a 40 fincas). Actores en tensión: intermediarios locales (se integran al transporte formal).</span>
+                </div>
+            </div>
+
+            <!-- PUNTO 2 -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-cafe-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-extrabold uppercase text-white bg-montana-600 px-3 py-1 rounded-full">Punto 2 • Diseñador (Carlos)</span>
+                        <i class="fa-solid fa-lightbulb text-xl text-cacao-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-cafe-900">Solución y Elemento Innovador</h3>
+                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                        Supera el asistencialismo tradicional (dar insumos sin mercado o cursos sueltos sin empleo) creando <strong>Células Simbióticas en Red (1 joven + 4 fincas)</strong>.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-cafe-100 text-xs">
+                    <strong class="text-montana-700 block">¿Por qué es innovador?</strong>
+                    <span>Une el <em>conocimiento tácito</em> agrícola del campesino adulto con la habilidad digital y comercial del joven, permitiendo que el joven emprenda en el agro sin necesitar tierra propia.</span>
+                </div>
+            </div>
+
+            <!-- PUNTO 3 Y 4 -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-cafe-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-extrabold uppercase text-white bg-cafe-800 px-3 py-1 rounded-full">Puntos 3 y 4 • Coordinación (Liliana)</span>
+                        <i class="fa-solid fa-handshake-angle text-xl text-montana-600"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-cafe-900">Actores (Stakeholders) y Responsabilidades</h3>
+                    <ul class="text-xs text-gray-600 mt-2 space-y-1.5">
+                        <li><strong>• Alcaldía de Colombia, Huila:</strong> Espacio físico, registro sanitario INVIMA colectivo y compras públicas locales.</li>
+                        <li><strong>• SENA y Comité de Cafeteros:</strong> Instructores en catación, barismo, tostión y marketing digital.</li>
+                        <li><strong>• Juntas de Acción Comunal (JAC):</strong> Selección democrática en veredas y veeduría ciudadana.</li>
+                        <li><strong>• Comercios de Neiva y Bogotá:</strong> Tiendas de café y hoteles compradores directos.</li>
+                    </ul>
+                </div>
+                <div class="mt-4 pt-3 border-t border-cafe-100 text-xs text-montana-700 font-bold">
+                    Enfoque: Intersectorialidad y Cogestión Comunitaria.
+                </div>
+            </div>
+
+            <!-- PUNTO 5 -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-cafe-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-extrabold uppercase text-white bg-cacao-500 px-3 py-1 rounded-full">Punto 5 • Gestor (Oscar)</span>
+                        <i class="fa-solid fa-coins text-xl text-cacao-500"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-cafe-900">Actividades, Recursos y Primer Paso Viable</h3>
+                    <ol class="text-xs text-gray-600 mt-2 space-y-1">
+                        <li><strong>Mes 1:</strong> Convocatoria con JAC y levantamiento de línea base.</li>
+                        <li><strong>Mes 2:</strong> Entrenamiento práctico SENA/Comité en catación y QR.</li>
+                        <li><strong>Mes 3:</strong> Procesamiento de microlotes y empaque <em>Origen Cardos</em>.</li>
+                        <li><strong>Meses 4-6:</strong> Venta directa en Neiva/Bogotá y medición final.</li>
+                    </ol>
+                </div>
+                <div class="mt-4 pt-3 border-t border-cafe-100 text-xs bg-amber-50 p-2.5 rounded-xl">
+                    <strong class="text-cafe-900 block">Primer Paso con Recursos Limitados ($15M COP):</strong>
+                    <span>Arrancar con <strong>5 jóvenes y 10 productores</strong> maquilando el tueste en Neiva y vendiendo las primeras 200 bolsas en eventos municipales y tiendas aliadas.</span>
+                </div>
+            </div>
+
+            <!-- PUNTO 6 (INDICADOR RESUMEN) -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-cafe-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-extrabold uppercase text-white bg-montana-600 px-3 py-1 rounded-full">Punto 6 • Indicador (Oscar)</span>
+                        <i class="fa-solid fa-chart-pie text-xl text-montana-600"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-cafe-900">Indicador de Resultado (No de Actividad)</h3>
+                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                        <strong>Nombre:</strong> Porcentaje de pequeños productores vinculados que aumentan en al menos un <strong>25% el precio de venta por kilo</strong> frente al pago del intermediario local.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-cafe-100 text-xs">
+                    <span class="block"><strong>Línea Base:</strong> 0% de sobreprecio (se levanta en Mes 1 con recibos reales).</span>
+                    <span class="block text-montana-700 font-bold mt-0.5">Meta y Plazo: Al menos 70% de los productores vinculados (7 de 10 en el piloto) en 6 meses.</span>
+                </div>
+            </div>
+
+            <!-- PUNTO 7 -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-cafe-200 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-extrabold uppercase text-white bg-cafe-800 px-3 py-1 rounded-full">Punto 7 • Sostenibilidad (Liliana y Yimi)</span>
+                        <i class="fa-solid fa-shield-halved text-xl text-cafe-700"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-cafe-900">Riesgo Principal y Sostenibilidad</h3>
+                    <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                        <strong>Riesgo:</strong> Urgencia de efectivo del campesino el día de mercado. <strong>Mitigación:</strong> Fondo Rotatorio que paga 75% de anticipo contra entrega del grano.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-cafe-100 text-xs">
+                    <strong class="text-montana-700 block">¿Cómo se mantiene ante un cambio de alcalde?</strong>
+                    <span>1) Acuerdo del Concejo Municipal de compras locales; y 2) Constitución de una <strong>Cooperativa Juvenil-Campesina</strong> que retiene el 5% de cada venta para autofinanciarse.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: TABLERO MATEMÁTICO DEL INDICADOR (PUNTO 7 DE LA GUÍA) -->
+    <section id="indicador" class="py-10 bg-montana-50 border-y border-montana-600/20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-lg border border-montana-600/30">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+                    <div>
+                        <span class="text-xs font-extrabold uppercase text-montana-700">Punto 7 de la Guía • Medir Resultados Reales</span>
+                        <h3 class="font-serif text-2xl font-extrabold text-cafe-900">Fórmula Oficial y Simulador de Meta del Indicador</h3>
+                    </div>
+                    <span class="bg-montana-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-xl">Meta Propuesta: ≥ 70% a los 6 Meses</span>
+                </div>
+
+                <!-- FÓRMULA -->
+                <div class="bg-cafe-900 text-white p-4 rounded-2xl text-center font-mono text-xs sm:text-sm mb-6">
+                    Indicador = ( N.º de productores vinculados que logran aumento ≥ 25% en precio por kilo ÷ Total de productores vinculados evaluados ) × 100
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-2 text-xs text-gray-700">
+                        <label for="ind-slider" class="font-bold text-cafe-900 block text-sm">
+                            Simular evaluación al Mes 6 (De los 10 productores del piloto):
+                        </label>
+                        <input id="ind-slider" type="range" min="1" max="10" value="8" oninput="updateIndicatorSim()" class="w-full accent-montana-600 cursor-pointer">
+                        <p>
+                            Si <strong id="ind-count" class="text-montana-700 text-sm">8 productores</strong> de los 10 evaluados superan el +25% en su precio de venta por kilo gracias a los microlotes tostados:
+                        </p>
+                    </div>
+
+                    <div class="bg-montana-50 p-4 rounded-2xl border border-montana-600/30 text-center">
+                        <span class="text-xs font-bold uppercase text-gray-500 block">Resultado del Indicador</span>
+                        <span id="ind-result" class="text-3xl font-black text-montana-700">80%</span>
+                        <span id="ind-status" class="block text-xs font-extrabold text-green-700 mt-1">
+                            <i class="fa-solid fa-circle-check mr-1"></i> ¡META CUMPLIDA Y SUPERADA! (Meta ≥ 70%)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE PEDIDO POR WHATSAPP -->
+    <div id="whatsapp-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-cafe-200 space-y-4">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center text-xl">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-cafe-900">Conexión Directa WhatsApp Business</h4>
+                        <span class="text-[11px] text-green-700 font-semibold block">Célula Joven “Origen Cardos” – Colombia, Huila</span>
+                    </div>
+                </div>
+                <button onclick="closeWhatsAppModal()" class="text-gray-400 hover:text-gray-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-2xl p-4 text-xs text-gray-800 space-y-2 font-mono" id="wa-message-preview">
+                <!-- Mensaje generado dinámicamente -->
+            </div>
+
+            <p class="text-[11px] text-gray-500 leading-relaxed">
+                <i class="fa-solid fa-circle-info text-montana-600 mr-1"></i>
+                Esta ventana demuestra cómo el código QR elimina al intermediario y envía el pedido estructurado directamente al celular del joven gestor del municipio.
+            </p>
+
+            <div class="flex gap-3">
+                <button onclick="closeWhatsAppModal()" class="w-full bg-montana-600 hover:bg-montana-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
+                    Entendido (Cerrar Simulación)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-cafe-900 text-cafe-200 py-8 text-xs border-t border-cafe-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <strong class="text-white font-serif text-sm">ORIGEN CARDOS – Colombia, Huila</strong>
+                <p class="text-[11px] text-cafe-200/80">Laboratorio de Innovación para el Desarrollo Territorial | Escuela Superior de Administración Pública (ESAP)</p>
+            </div>
+            <div class="text-right">
+                <span class="text-cacao-400 font-bold">Equipo 3:</span> Liliana • Yimi • Carlos • Oscar
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÓGICA INTERACTIVA JAVASCRIPT -->
+    <script>
+        const lots = [
+            {
+                badge: "Café de Altura • Vereda San Marcos",
+                title: "Finca El Mirador – Microlote #01",
+                score: "85.5 Pts SCA",
+                producer: "Don Álvaro Rojas",
+                youth: "Carlos (Célula Joven #01)",
+                altitude: "1.780 msnm / Lavado Suave",
+                notes: "Panela, mandarina, chocolate dulce",
+                story: "Cultivado bajo sombrío en la vereda San Marcos de Colombia, Huila. Antes se vendía como pergamino corriente; hoy es catado y tostado por jóvenes locales logrando un 43% más de ingreso para la familia.",
+                pricePerLb: 28000,
+                intermediaryPerLb: 15600
+            },
+            {
+                badge: "Café Bourbon Rosado • Vereda Santa Ana",
+                title: "Finca La Esperanza – Microlote #02",
+                score: "86.0 Pts SCA",
+                producer: "Doña Miriam Ortiz (Mujer Cafetera)",
+                youth: "Liliana (Célula Joven #02)",
+                altitude: "1.820 msnm / Honey",
+                notes: "Frutos rojos, miel de montaña y floral",
+                story: "Cosechado selectivamente por mujeres rurales de la vereda Santa Ana. Con el sello Origen Cardos llega directo a tiendas de especialidad en Neiva y Bogotá.",
+                pricePerLb: 30000,
+                intermediaryPerLb: 16200
+            },
+            {
+                badge: "Cacao Fino de Aroma • Vereda Monguí",
+                title: "Finca Los Cardos – Microlote #03",
+                score: "86.5 Pts",
+                producer: "Don Hernando Tovar",
+                youth: "Oscar (Célula Joven #03)",
+                altitude: "1.450 msnm / Fermentación en Cajón",
+                notes: "Nuez tostada, caramelo y frutos secos",
+                story: "Cacao especial fermentado y transformado en chocolate de mesa y nibs al 70% por jóvenes capacitados con el SENA en Colombia, Huila.",
+                pricePerLb: 26000,
+                intermediaryPerLb: 14500
+            }
+        ];
+
+        let currentLotIndex = 0;
+
+        function formatCOP(value) {
+            return "$" + Math.round(value).toLocaleString('es-CO') + " COP";
+        }
+
+        function selectLot(index) {
+            currentLotIndex = index;
+            const lot = lots[index];
+
+            document.getElementById('sim-badge').textContent = lot.badge;
+            document.getElementById('sim-title').textContent = lot.title;
+            document.getElementById('sim-score').textContent = lot.score;
+            document.getElementById('sim-producer').textContent = lot.producer;
+            document.getElementById('sim-youth').textContent = lot.youth;
+            document.getElementById('sim-altitude').textContent = lot.altitude;
+            document.getElementById('sim-notes').textContent = lot.notes;
+            document.getElementById('sim-story').textContent = lot.story;
+
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById('lot-btn-' + i);
+                const icon = btn.querySelector('i');
+                if (i === index) {
+                    btn.className = "lot-btn text-left p-4 rounded-2xl border-2 border-montana-600 bg-white shadow-md transition flex items-start justify-between";
+                    icon.className = "fa-solid fa-circle-check text-montana-600 text-xl";
+                } else {
+                    btn.className = "lot-btn text-left p-4 rounded-2xl border-2 border-cafe-200 bg-white/70 hover:bg-white transition flex items-start justify-between";
+                    icon.className = "fa-regular fa-circle text-gray-400 text-xl";
+                }
+            }
+
+            updateCalculator();
+        }
+
+        function updateCalculator() {
+            const qty = parseInt(document.getElementById('qty-slider').value, 10);
+            const lot = lots[currentLotIndex];
+
+            const total = qty * lot.pricePerLb;
+            const farmerShare = total * 0.80;
+            const youthShare = total * 0.15;
+            const fundShare = total * 0.05;
+
+            const intermediaryTotal = qty * lot.intermediaryPerLb;
+            const increasePct = ((farmerShare - intermediaryTotal) / intermediaryTotal) * 100;
+
+            const advance75 = farmerShare * 0.75;
+            const balance25 = farmerShare * 0.25;
+
+            document.getElementById('qty-display').textContent = qty + (qty === 1 ? " Libra" : " Libras");
+            document.getElementById('calc-total').textContent = formatCOP(total);
+            document.getElementById('calc-farmer').textContent = formatCOP(farmerShare);
+            document.getElementById('calc-farmer-highlight').textContent = formatCOP(farmerShare);
+            document.getElementById('calc-youth').textContent = formatCOP(youthShare);
+            document.getElementById('calc-fund').textContent = formatCOP(fundShare);
+            document.getElementById('calc-intermediary').textContent = formatCOP(intermediaryTotal);
+            document.getElementById('calc-increase-pct').textContent = "+" + increasePct.toFixed(1) + "%";
+            document.getElementById('calc-advance').textContent = formatCOP(advance75) + " (75%)";
+            document.getElementById('calc-balance').textContent = formatCOP(balance25);
+        }
+
+        function updateIndicatorSim() {
+            const count = parseInt(document.getElementById('ind-slider').value, 10);
+            const pct = (count / 10) * 100;
+            document.getElementById('ind-count').textContent = count + (count === 1 ? " productor" : " productores");
+            document.getElementById('ind-result').textContent = pct + "%";
+
+            const statusEl = document.getElementById('ind-status');
+            if (pct >= 70) {
+                statusEl.className = "block text-xs font-extrabold text-green-700 mt-1";
+                statusEl.innerHTML = '<i class="fa-solid fa-circle-check mr-1"></i> ¡META CUMPLIDA! (Supera o iguala el 70% requerido a los 6 meses)';
+            } else {
+                statusEl.className = "block text-xs font-extrabold text-amber-700 mt-1";
+                statusEl.innerHTML = '<i class="fa-solid fa-triangle-exclamation mr-1"></i> En progreso (La meta propuesta para el mes 6 es llegar al 70%)';
+            }
+        }
+
+        function openWhatsAppModal() {
+            const qty = parseInt(document.getElementById('qty-slider').value, 10);
+            const lot = lots[currentLotIndex];
+            const total = formatCOP(qty * lot.pricePerLb);
+            const preview = document.getElementById('wa-message-preview');
+
+            preview.innerHTML = `
+                <p class="font-bold text-green-900">Mensaje automático generado tras escanear el QR:</p>
+                <p>"¡Hola Red Joven <strong>Origen Cardos</strong> (Colombia, Huila)! Escaneé el código QR del empaque y quiero pedir:</p>
+                <p>• <strong>Producto:</strong> ${lot.title} (${lot.score})<br>
+                • <strong>Productor:</strong> ${lot.producer}<br>
+                • <strong>Joven Gestor:</strong> ${lot.youth}<br>
+                • <strong>Cantidad:</strong> ${qty} libras (500g)<br>
+                • <strong>Total sin intermediarios:</strong> ${total}"</p>
+            `;
+            document.getElementById('whatsapp-modal').classList.remove('hidden');
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsapp-modal').classList.add('hidden');
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Inicializar valores al cargar
+        window.onload = function() {
+            updateCalculator();
+            updateIndicatorSim();
+        };
+    </script>
+</body>
+</html>
